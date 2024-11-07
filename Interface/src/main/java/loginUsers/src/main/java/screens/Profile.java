@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.MainController;
-import ejercicio04.modelo.User;
+
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -22,6 +22,7 @@ public class Profile extends JPanel {
 	private JTextField logInField;
 	private JTextField SignUpField;
 	private JButton btnLogOut;
+	private JButton btnImport;
 
 	/**
 	 * Create the panel.
@@ -66,7 +67,7 @@ public class Profile extends JPanel {
 				mainController.goToChangePassScreen();
 			}
 		});
-		btnChangePass.setBounds(270, 249, 131, 23);
+		btnChangePass.setBounds(298, 249, 131, 23);
 		add(btnChangePass);
 		
 		JLabel lblProfile = new JLabel("Profile");
@@ -92,8 +93,20 @@ public class Profile extends JPanel {
 				mainController.LogOut();
 			}
 		});
-		btnLogOut.setBounds(63, 249, 118, 23);
+		btnLogOut.setBounds(34, 249, 118, 23);
 		add(btnLogOut);
+		
+		btnImport = new JButton("Export Csv");
+		btnImport.setBounds(180, 249, 89, 23);
+		btnImport.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainController.importCsv();
+				
+			}
+		});
+		add(btnImport);
 		
 	
 		
@@ -112,6 +125,4 @@ public class Profile extends JPanel {
 	public void setSignUpDate (String signUpDate) {
 		SignUpField.setText(signUpDate);
 	}
-	
-
 }

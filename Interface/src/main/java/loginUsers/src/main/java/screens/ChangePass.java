@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 
+import components.JMyPasswordField;
 import controller.MainController;
 
 import javax.swing.JButton;
@@ -18,9 +19,9 @@ import java.awt.event.KeyEvent;
 public class ChangePass extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPasswordField CurrentpasswordField;
-	private JPasswordField NewPasswordFiel;
-	private JPasswordField RepeatPasswordField;
+	private JMyPasswordField currentpasswordField;
+	private JMyPasswordField newPasswordFiel;
+	private JMyPasswordField repeatPasswordField;
 	private MainController mainController;
 
 	/**
@@ -47,16 +48,18 @@ public class ChangePass extends JPanel {
 		lblCurrent.setBounds(53, 88, 104, 14);
 		add(lblCurrent);
 		
-		CurrentpasswordField = new JPasswordField();
-		CurrentpasswordField.setBounds(187, 85, 87, 20);
-		add(CurrentpasswordField);
+		currentpasswordField = new JMyPasswordField();
+		currentpasswordField.setBounds(187, 85, 87, 20);
+		currentpasswordField.setMaxLength(8);
+		add(currentpasswordField);
 		
-		NewPasswordFiel = new JPasswordField();
-		NewPasswordFiel.setBounds(187, 135, 87, 20);
-		add(NewPasswordFiel);
+		newPasswordFiel = new JMyPasswordField();
+		newPasswordFiel.setBounds(187, 135, 87, 20);
+		newPasswordFiel.setMaxLength(8);
+		add(newPasswordFiel);
 		
-		RepeatPasswordField = new JPasswordField();
-		RepeatPasswordField.addKeyListener(new KeyAdapter() {
+		repeatPasswordField = new JMyPasswordField();
+		repeatPasswordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -64,8 +67,9 @@ public class ChangePass extends JPanel {
 				}
 			}
 		});
-		RepeatPasswordField.setBounds(187, 181, 87, 20);
-		add(RepeatPasswordField);
+		repeatPasswordField.setBounds(187, 181, 87, 20);
+		repeatPasswordField.setMaxLength(8);
+		add(repeatPasswordField);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addKeyListener(new KeyAdapter() {
@@ -106,7 +110,7 @@ public class ChangePass extends JPanel {
 	}
 	
 	private void submit() {
-		mainController.submitChangePass(new String (CurrentpasswordField.getPassword()), new String (NewPasswordFiel.getPassword()));
+		mainController.submitChangePass(new String (currentpasswordField.getPassword()), new String (newPasswordFiel.getPassword()));
 
 	}
 

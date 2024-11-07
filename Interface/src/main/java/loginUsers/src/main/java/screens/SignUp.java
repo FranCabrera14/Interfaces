@@ -7,8 +7,11 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import appServices.modelo.User;
+import components.JMyPasswordField;
+import components.JMyTextField;
 import controller.MainController;
-import ejercicio04.modelo.User;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -20,11 +23,11 @@ import java.awt.event.KeyEvent;
 public class SignUp extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldUserName;
-	private JTextField textFieldEmail;
+	private JMyTextField textFieldUserName;
+	private JMyTextField textFieldEmail;
 	private MainController mainController;
-	private JPasswordField passwordField01;
-	private JPasswordField passwordField02;
+	private JMyPasswordField passwordField01;
+	private JMyPasswordField passwordField02;
 	private User user;
 
 	/**
@@ -43,9 +46,10 @@ public class SignUp extends JPanel {
 		lblUserName.setBounds(49, 60, 79, 14);
 		add(lblUserName);
 		
-		textFieldUserName = new JTextField();
+		textFieldUserName = new JMyTextField();
 		textFieldUserName.setColumns(10);
 		textFieldUserName.setBounds(169, 57, 86, 20);
+		textFieldUserName.setMaxLength(50);
 		add(textFieldUserName);
 		
 		
@@ -84,22 +88,25 @@ public class SignUp extends JPanel {
 		lblUserName_1.setBounds(49, 103, 79, 14);
 		add(lblUserName_1);
 		
-		textFieldEmail = new JTextField();
+		textFieldEmail = new JMyTextField();
 		textFieldEmail.setColumns(10);
 		textFieldEmail.setBounds(169, 100, 86, 20);
+		textFieldEmail.setMaxLength(50);
 		add(textFieldEmail);
 		
 		JLabel lblRepeatPassword = new JLabel("Repeat Password");
 		lblRepeatPassword.setBounds(49, 191, 104, 14);
 		add(lblRepeatPassword);
 		
-		passwordField01 = new JPasswordField();
+		passwordField01 = new JMyPasswordField();
 		
 		passwordField01.setBounds(168, 142, 87, 20);
+		passwordField01.setMaxLength(8);
 		add(passwordField01);
 		
-		passwordField02 = new JPasswordField();
+		passwordField02 = new JMyPasswordField();
 		passwordField02.setBounds(169, 188, 86, 20);
+		passwordField02.setMaxLength(8);
 		add(passwordField02);
 		passwordField02.addKeyListener(new KeyAdapter() {
 			@Override

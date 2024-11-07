@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import components.JMyPasswordField;
+import components.JMyTextField;
 import controller.MainController;
 
 import javax.swing.JButton;
@@ -19,9 +21,9 @@ import java.awt.event.KeyEvent;
 public class LogIn extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldUsername;
+	private JMyTextField textFieldUsername;
 	private MainController mainController;
-	private JPasswordField passwordField;
+	private JMyPasswordField passwordField;
 
 	/**
 	 * Create the panel.
@@ -43,12 +45,14 @@ public class LogIn extends JPanel {
 		lblPassword.setBounds(62, 162, 68, 14);
 		add(lblPassword);
 		
-		textFieldUsername = new JTextField();
+		textFieldUsername = new JMyTextField();
 		textFieldUsername.setBounds(157, 118, 86, 20);
+		textFieldUsername.setMaxLength(50);
 		add(textFieldUsername);
 		textFieldUsername.setColumns(10);
-		passwordField = new JPasswordField();
+		passwordField = new JMyPasswordField();
 		passwordField.setBounds(157, 159, 86, 20);
+		passwordField.setMaxLength(8);
 		add(passwordField);
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override

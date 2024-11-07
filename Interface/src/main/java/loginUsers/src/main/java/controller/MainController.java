@@ -1,25 +1,25 @@
 package controller;
 
-import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.io.File;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
-import org.checkerframework.checker.initialization.qual.Initialized;
+import appServices.modelo.User;
+import appServices.services.ExistingUserException;
+import appServices.services.NoMatchPaswwordsException;
+import appServices.services.UserDoesntExistException;
+import appServices.services.UserService;
+import appServices.services.UserServiceException;
+import ceu.dam.ad.ejerciciosTema3.csv.ejercicio02.Ejercicio02ServiceImpl;
 
-import ejercicio04.dao.UserDao;
-import ejercicio04.modelo.User;
-import ejercicio04.services.ExistingUserException;
-import ejercicio04.services.NoMatchPaswwordsException;
-import ejercicio04.services.UserDoesntExistException;
-import ejercicio04.services.UserService;
-import ejercicio04.services.UserServiceException;
 import screens.ChangePass;
 import screens.LogIn;
 import screens.MainScreen;
@@ -103,6 +103,22 @@ public class MainController extends JFrame {
 	}
 	
 	public void submitLogin(String userName, String Password)  {
+	/**
+	 * Esto es para seleccionar archivos y eso
+	 */
+//		JFileChooser chooser = new JFileChooser();
+//		chooser.setDialogTitle("HOLA WUAPO");
+//		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichero XML", "xml");
+//		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//		chooser.setFileFilter(filter);
+//		Integer seleccion = chooser.showOpenDialog(mainScreen);
+//		if (seleccion == JFileChooser.APPROVE_OPTION) {
+//			File fichero = chooser.getSelectedFile();
+//			System.out.println(fichero.getAbsolutePath());
+//		}
+//		else {
+//			System.out.println("pos na...");
+//		}
 		try {
 			userSession = us.logIn(userName, Password);
 			goToProfileScreen();
@@ -162,6 +178,22 @@ public class MainController extends JFrame {
 				((JTextField) component).setText("");
 			}
 		}
+	}
+	
+	public void importCsv() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Importa un archivo porque yo ya no te importo.");
+		Integer selected = fileChooser.showOpenDialog(profileScreen);
+		if(selected == JFileChooser.APPROVE_OPTION) {
+			File fileOpener = fileChooser.getSelectedFile();
+			Ejercicio02ServiceImpl service = new Ejercicio02ServiceImpl();
+			try {
+				service.importarUsuarioCSV(fileOpener.getAbsolutePath());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }
