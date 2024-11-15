@@ -1,0 +1,3 @@
+module Procesos {
+	requires lombok;
+}
