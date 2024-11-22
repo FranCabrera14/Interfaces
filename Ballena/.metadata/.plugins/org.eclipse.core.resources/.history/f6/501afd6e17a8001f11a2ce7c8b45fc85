@@ -1,0 +1,19 @@
+package examen.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import examen.modelo.Futbolista;
+
+public class FutbolistasDao {
+
+	// TODO: IMPLEMENTA ESTE DAO. NO TIENES QUE AÑADIR MÁS MÉTODOS.
+	
+	public List<Futbolista> selectByEquipo(Connection conn, Long idEquipo) throws SQLException{
+		String sql = "select * from futbolistas where "
+		return null;
+	}
+	
+
+}

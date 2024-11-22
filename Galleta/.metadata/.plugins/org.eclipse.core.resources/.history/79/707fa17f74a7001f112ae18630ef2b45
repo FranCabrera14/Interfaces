@@ -1,0 +1,132 @@
+package examen.gui.screens;
+
+import javax.swing.JPanel;
+
+import examen.gui.controller.MainController;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
+
+public class AltaScreen extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField textFieldDescripcion;
+	private JTextField textFieldPrio;
+	private JTextField textFieldComboBox;
+	private MainController mainController;
+	private JLabel lblUsuario;
+
+	/**
+	 * Create the panel.
+	 */
+	public AltaScreen(MainController mainController) {
+		this.mainController = mainController;
+		setLayout(null);
+		
+		JLabel lblAcceso = new JLabel("Acceso:");
+		lblAcceso.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAcceso.setBounds(104, 66, 83, 14);
+		add(lblAcceso);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTipo.setBounds(104, 109, 83, 14);
+		add(lblTipo);
+		
+		JLabel lblPrioridad = new JLabel("Prioridad:");
+		lblPrioridad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPrioridad.setBounds(104, 181, 83, 14);
+		add(lblPrioridad);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDescripcion.setBounds(104, 219, 83, 14);
+		add(lblDescripcion);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(197, 265, 89, 23);
+		add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainController.goToLoginScreen();
+			}
+		});
+		btnCancelar.setBounds(330, 265, 89, 23);
+		add(btnCancelar);
+		
+		JComboBox<String>comboBox = new JComboBox();
+		comboBox.setBounds(197, 105, 124, 22);
+		add(comboBox);
+		List<String> lista = mainController.getListaSolicitudes();
+		
+		for (String string : lista) {
+			comboBox.addItem(string);
+		}
+		comboBox.addItem("Otros");
+		textFieldDescripcion = new JTextField("");
+		textFieldDescripcion.setBounds(200, 213, 121, 20);
+		add(textFieldDescripcion);
+		textFieldDescripcion.setColumns(10);
+
+		if(comboBox.getSelectedItem().equals("Otros")) {
+			textFieldComboBox.setEnabled(true);
+		}
+		
+		
+		textFieldPrio = new JTextField();
+		textFieldPrio.setText("1");
+		textFieldPrio.setBounds(242, 175, 30, 20);
+		add(textFieldPrio);
+		textFieldPrio.setColumns(10);
+		
+		JButton btnRestar = new JButton("-");
+		btnRestar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnRestar.setBounds(181, 174, 46, 34);
+		add(btnRestar);
+		
+		JButton btnSumar = new JButton("+");
+		btnSumar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (textFieldPrio.equals("5")) {
+					
+				}else {
+					Integer num = Integer.parseInt(textFieldPrio.getText()+1);
+					textFieldPrio.setText(num.toString());
+				}
+			}
+		});
+		btnSumar.setBounds(291, 174, 46, 34);
+		add(btnSumar);
+		
+		textFieldComboBox = new JTextField();
+		textFieldComboBox.setEnabled(false);
+		textFieldComboBox.setBounds(200, 144, 121, 20);
+		add(textFieldComboBox);
+		textFieldComboBox.setColumns(10);
+		
+		lblUsuario = new JLabel("");
+		lblUsuario.setForeground(new Color(128, 0, 0));
+		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblUsuario.setBounds(197, 66, 46, 14);
+		add(lblUsuario);
+
+	}
+	
+	public void setLblUsuario (String texto) {
+		lblUsuario.setText(texto);
+		
+	}
+}

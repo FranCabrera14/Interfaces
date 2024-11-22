@@ -1,0 +1,35 @@
+package examen.services.parte2;
+
+import java.util.List;
+
+import examen.modelo.Equipo;
+import examen.services.EquipoNotFoundException;
+import examen.services.FutbolDbException;
+import examen.services.FutbolXmlException;
+
+public class FutbolXmlServiceImpl implements FutbolXmlService  {
+
+	// TODO: En esta clase es donde tienes que implementar tu código
+	// TODO: Mira los comentarios escritos en la interfaz FutbolXmlService
+	/**  
+	 * Este método recibe la ruta completa con el nombre de un fichero XML. El método debe leer el fichero completo para obtener
+	 * una lista de Equipos. Cuando la tenga, tendrá que insertar dicha lista en BBDD utilizando el método del servicio
+	 * FutbolDbService que ya has implementado anteriormente. 
+	 * 
+	 * El método devolverá una lista de los equipos insertados con su ID relleno (el ID generado por la BBDD). 
+	 * 
+	 * Para leer el XML podrás utilizar SAX o DOM. Lo que prefieras.
+	 * 
+	 * Si hay algún error al leer el XML, tendrás que lanzar FutbolXmlException con un mensaje y el origen de la excepción.
+	 * Si hay algún error al abrir la conexión para insertar, tendrás que lanzar FutbolDbException con un mensaje y el origen de la excepción.	 
+	 */
+	@Override
+	public List<Equipo> importarEquipos(String pathFile) throws FutbolXmlException, FutbolDbException {
+		return null;
+	}
+
+	@Override
+	public void exportarEquipo(String pathFile, Long idEquipo) throws FutbolXmlException, FutbolDbException, EquipoNotFoundException {
+	}
+
+}

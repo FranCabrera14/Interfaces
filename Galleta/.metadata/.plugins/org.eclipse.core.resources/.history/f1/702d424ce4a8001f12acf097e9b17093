@@ -1,0 +1,116 @@
+package examen.gui.controller;
+
+import java.awt.EventQueue;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import examen.gui.screens.AltaScreen;
+import examen.gui.screens.LoginScreen;
+import examen.modelo.Solicitud;
+import examen.services.AutenticacionException;
+import examen.services.ExamenService;
+
+public class MainController extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private LoginScreen loginScreen;
+	private AltaScreen altaScreen;
+	private Solicitud solicitud; 
+	private final ExamenService service = new ExamenService();
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainController frame = new MainController();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					frame.setSize(1000,550);
+					
+		      
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainController() {
+		loginScreen = new LoginScreen(this);
+		altaScreen = new AltaScreen(this);
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		this.setSize(500,800);
+		this.setBounds(200, 200, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setContentPane(loginScreen);
+	
+	}
+	
+	public void checkLogin(String codigo) {
+		try {
+			ExamenService service = new ExamenService();
+			service.login(codigo);
+			
+			
+		} catch (AutenticacionException e) {
+			String texto = e.getMessage();
+			loginScreen.lblSetText(texto);
+			
+		}
+	}
+	
+	public void goToAltaScreen() {
+		setContentPane(altaScreen);
+		revalidate();
+		
+	}
+	
+	public void goToLoginScreen() {
+		setContentPane(loginScreen);
+		revalidate();
+		
+	}
+	
+	public List<String> getListaSolicitudes(){
+		ExamenService service = new ExamenService();
+		List<String> lista = service.consultarTiposSolicitudes();
+		return lista;
+		
+	}
+	public void hacerSolicitud() {
+		ExamenService service = new ExamenService();
+		service.consultarTiposSolicitudes();
+	}
+	
+	public void salir() {
+		Integer opcion = JOptionPane.showConfirmDialog(this, "¿Desea salir de la aplicacion?", "SALIR" , JOptionPane.YES_NO_OPTION);
+		if (opcion == 0) {
+			System.exit(0);
+		}
+		
+	}
+
+	public void guardarConsulta(Object selectedItem, String text, String text2, String text3) {
+		Solicitud solicitud = new Solicitud(text2, null, text3);
+		service.registrarSolicitud(solicitud);
+		
+	}
+
+}

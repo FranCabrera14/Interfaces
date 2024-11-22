@@ -1,0 +1,6 @@
+package paquete_1_5;
+
+public class TsorteoSimulator extends Thread {
+	
+
+}

@@ -1,0 +1,144 @@
+package examen.gui.screens;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import examen.gui.controller.MainController;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class LoginScreen extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField textField;
+	private MainController mainController;
+	private JButton btnEntrar;
+	private JLabel lblBloqueado; 
+
+	/**
+	 * Create the panel.
+	 */
+	public LoginScreen(MainController mainController) {
+		this.mainController = mainController;
+		setLayout(null);
+	
+		JLabel lblBienvenida = new JLabel("Bienvenido a BlasProgram");
+		lblBienvenida.setForeground(new Color(128, 0, 255));
+		lblBienvenida.setFont(new Font("Playbill", Font.PLAIN, 70));
+		lblBienvenida.setBounds(40, 37, 879, 83);
+		add(lblBienvenida);
+		
+		JLabel lblAcesso = new JLabel("Elija el tipo de acceso");
+		lblAcesso.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAcesso.setBounds(354, 206, 175, 14);
+		add(lblAcesso);
+		
+		JRadioButton rdbtnAnonimo = new JRadioButton("Anónimo");
+		rdbtnAnonimo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnEntrar.setEnabled(true);
+				textField.setEnabled(false);
+			}
+		});
+		rdbtnAnonimo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		rdbtnAnonimo.setBounds(354, 244, 109, 23);
+		add(rdbtnAnonimo);
+		
+		JRadioButton rdbtnIdentificacion = new JRadioButton("Identificación:");
+		rdbtnIdentificacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setEnabled(true);
+				
+				
+			}
+		});
+		rdbtnIdentificacion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		rdbtnIdentificacion.setBounds(354, 281, 109, 23);
+		add(rdbtnIdentificacion);
+		ButtonGroup grupo = new ButtonGroup();
+		grupo.add(rdbtnIdentificacion);
+		grupo.add(rdbtnAnonimo);
+		
+		
+		
+		btnEntrar = new JButton("Entrar");
+	
+	
+	
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}else {
+					btnEntrar.setEnabled(true);
+				}
+			}
+		});
+		textField.setEnabled(false);
+		textField.setBounds(475, 282, 86, 20);
+		add(textField);
+		textField.setColumns(10);
+	
+		
+	
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtnAnonimo.isSelected()) {
+					mainController.goToAltaScreen();
+					textField.setText("")
+				}else {
+					if(textField.getText().equals("123")) {
+						mainController.checkLogin(textField.getText());
+						mainController.goToAltaScreen();
+					}else {
+						mainController.checkLogin(textField.getText());
+						textField.setText("");
+					}
+					
+				}
+				
+			}
+		});
+		btnEntrar.setBounds(816, 281, 89, 23);
+		add(btnEntrar);
+		btnEntrar.setEnabled(false);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainController.salir();
+				
+			}
+		});
+		btnSalir.setBounds(816, 330, 89, 23);
+		add(btnSalir);
+		
+		lblBloqueado = new JLabel("");
+		lblBloqueado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblBloqueado.setForeground(new Color(128, 0, 0));
+		lblBloqueado.setBounds(364, 334, 197, 14);
+		add(lblBloqueado);
+
+	}
+	
+	public void lblSetText(String string) {
+		
+		lblBloqueado.setText(string);
+	}
+}

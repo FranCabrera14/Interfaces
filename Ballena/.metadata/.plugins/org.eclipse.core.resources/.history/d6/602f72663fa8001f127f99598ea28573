@@ -1,0 +1,17 @@
+package paquete_4;
+
+public class Run {
+
+    public static void main(String[] args) {
+        LogMensajes logMensajes = new LogMensajes();
+
+        // Crear y lanzar 10 usuarios como hilos
+
+        
+        // Esperar hasta fin de todos los hilos
+
+
+        // Imprimir todos los mensajes registrados
+        
+    }
+}

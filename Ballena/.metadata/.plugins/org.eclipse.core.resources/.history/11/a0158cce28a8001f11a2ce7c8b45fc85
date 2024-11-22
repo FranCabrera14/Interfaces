@@ -1,0 +1,24 @@
+package examen.modelo;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+@Data
+public class Futbolista {
+	
+	// NO PUEDES AÑADIR MÁS ATRIBUTOS. 
+	
+	private Long id;
+	private Integer dorsal;
+	private String nombre;
+	private LocalDate fechaNacimiento;
+	private String posicion;
+	
+	
+	@Override
+	public String toString() {
+		return id + "-" + nombre + " // Dorsal y posición: " + dorsal + " " + posicion + " (" + fechaNacimiento +")";
+	}
+	
+
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
+    <fullyQualifiedTypeName name="examen.gui.screens.AltaScreen"/>
+    <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="examen.gui.screens.LoginScreen"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap.KeySetView"/>
+    <fullyQualifiedTypeName name="examen.gui.controller.MainController"/>
+    <fullyQualifiedTypeName name="java.lang.Character"/>
+    <fullyQualifiedTypeName name="javax.swing.JLabel"/>
+    <fullyQualifiedTypeName name="examen.services.ExamenService"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="examen.modelo.Solicitud"/>
+</qualifiedTypeNameHistroy>

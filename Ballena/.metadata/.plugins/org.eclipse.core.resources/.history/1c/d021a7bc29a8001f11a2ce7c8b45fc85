@@ -1,0 +1,63 @@
+package examen.services.parte2;
+
+import java.io.File;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import examen.dao.EquiposDao;
+import examen.modelo.Equipo;
+import examen.services.EquipoNotFoundException;
+import examen.services.FutbolDbException;
+import examen.services.FutbolXmlException;
+import examen.services.parte1.FutbolDbServiceImpl;
+
+public class FutbolXmlServiceImpl implements FutbolXmlService  {
+
+	// TODO: En esta clase es donde tienes que implementar tu código
+	// TODO: Mira los comentarios escritos en la interfaz FutbolXmlService
+	/**  
+	 * Este método recibe la ruta completa con el nombre de un fichero XML. El método debe leer el fichero completo para obtener
+	 * una lista de Equipos. Cuando la tenga, tendrá que insertar dicha lista en BBDD utilizando el método del servicio
+	 * FutbolDbService que ya has implementado anteriormente. 
+	 * 
+	 * El método devolverá una lista de los equipos insertados con su ID relleno (el ID generado por la BBDD). 
+	 * 
+	 * Para leer el XML podrás utilizar SAX o DOM. Lo que prefieras.
+	 * 
+	 * Si hay algún error al leer el XML, tendrás que lanzar FutbolXmlException con un mensaje y el origen de la excepción.
+	 * Si hay algún error al abrir la conexión para insertar, tendrás que lanzar FutbolDbException con un mensaje y el origen de la excepción.	 
+	 */
+	@Override
+	public List<Equipo> importarEquipos(String pathFile) throws FutbolXmlException, FutbolDbException {
+		
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+
+	@Override
+	public void exportarEquipo(String pathFile, Long idEquipo) throws FutbolXmlException, FutbolDbException, EquipoNotFoundException {
+		try {
+			File file = new File(pathFile);
+			XmlMapper mapper = new XmlMapper();
+			FutbolDbServiceImpl fservice = new FutbolDbServiceImpl();
+			Equipo equipo1 = fservice.consultarEquipo(idEquipo);
+			if(equipo1 != null){
+				mapper.writeValue(file, equipo1);
+			}else {
+				throw new EquipoNotFoundException("Equipo no encontrado, prueba otra vez");
+			}
+			
+		} catch (Exception e) {
+			throw new FutbolXmlException("Ha habido un problema exportando el archivo",e);
+		}
+	}
+
+}

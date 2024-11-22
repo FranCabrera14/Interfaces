@@ -1,0 +1,26 @@
+package examen.dao;
+
+
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.mariadb.jdbc.Connection;
+
+import examen.modelo.Futbolista;
+
+public class FutbolistasDao {
+
+	// TODO: IMPLEMENTA ESTE DAO. NO TIENES QUE AÑADIR MÁS MÉTODOS.
+	
+	public List<Futbolista> selectByEquipo(Connection conn, Long idEquipo) throws SQLException{
+		String sql = "select * from futbolistas where id_equipo = ?";
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			
+		}
+		return null;
+	}
+	
+
+}

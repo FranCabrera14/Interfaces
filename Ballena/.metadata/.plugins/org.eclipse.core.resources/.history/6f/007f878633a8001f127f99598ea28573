@@ -1,0 +1,46 @@
+package paquete_1_5;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collector;
+
+public class SorteoSimulator {
+	private String nombreSorteo;
+	private Integer numBolaInicial;
+	private Integer numBolaFinal;
+	private Integer bolasExtraer;
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Sorteo bonoloto desde la bola 10 a la 7 donde se extraen 5 bolas.\n"
+				+ "";
+	}
+	
+	public void generaUnaCombinaciónGanadora(long milis) {
+		
+		List <Integer >bombo = new ArrayList<Integer>();
+		
+		for (int i = 1; i <= 90.; i++) {
+			bombo.add(i);
+			
+		}
+		Collections.shuffle(bombo);
+		while(bolasExtraer > 1) {
+			try {
+				Thread.sleep(milis);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
+		
+	}
+	
+	
+
+}

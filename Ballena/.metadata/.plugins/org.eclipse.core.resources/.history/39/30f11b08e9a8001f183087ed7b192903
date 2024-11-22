@@ -1,0 +1,82 @@
+package examen.services.parte1;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import examen.dao.EquiposDao;
+import examen.dao.FutbolistasDao;
+import examen.dao.PaisesDao;
+import examen.modelo.Equipo;
+import examen.modelo.Futbolista;
+import examen.modelo.Pais;
+import examen.services.DbService;
+import examen.services.EquipoNotFoundException;
+import examen.services.FutbolDbException;
+
+public class FutbolDbServiceImpl extends DbService implements FutbolDbService {
+	private EquiposDao equipoDao;
+	private FutbolistasDao futbolistaDao;
+	private PaisesDao paisesDao;
+	// TODO: En esta clase es donde tienes que implementar tu código.
+	// TODO: Mira los comentarios escritos en la interfaz FutbolDbService
+
+	public FutbolDbServiceImpl() {
+		equipoDao = new EquiposDao();
+		paisesDao = new PaisesDao();
+		futbolistaDao = new FutbolistasDao();
+	}
+	@Override
+	public Equipo consultarEquipo(Long id) throws FutbolDbException, EquipoNotFoundException {
+		try (Connection conn = openConnection()) {
+	
+			Equipo equipo1 = equipoDao.selectById(conn, id);
+			equipo1.setPlantilla(futbolistaDao.selectByEquipo(conn, id));
+			List<Futbolista> listaFutbolista1 = futbolistaDao.selectByEquipo(conn, id);
+			
+			Map<String, String> map = paisesDao.getAllMapPaises();
+			Pais pais = new Pais();
+			pais.setDescripcion(map.get(pais.getCodigo()));
+			equipo1.setPais(pais);
+			if (equipo1 != null) {
+				equipo1.setPlantilla(listaFutbolista1);
+
+			} else {
+				throw new EquipoNotFoundException("No existe un equipo con ese ID");
+			}
+			return equipo1;
+		} catch (SQLException e) {
+			throw new FutbolDbException("Hubo un problema", e);
+		}
+
+	}
+
+	@Override
+	public List<Equipo> insertarListaEquipos(List<Equipo> equipos) throws FutbolDbException {
+		try (Connection conn = openConnection()) {
+			List<Equipo> listaEquipos = equipos;
+			for (Equipo equipo : listaEquipos) {
+				try {
+				Long id =	equipoDao.insert(conn, equipo);
+				} catch (Exception e) {
+					
+				}
+				
+//				equipo = equipoDao.selectById(conn, equipo.getId());
+//				if (equipo == null) {
+//				} else {
+//					throw new FutbolDbException("Ya existe ese codigo de equipo");
+//				}
+
+			}
+
+			return listaEquipos;
+		} catch (SQLException e) {
+			throw new FutbolDbException("Problema insertando la lista de equipos", e);
+		}
+
+	}
+
+}

@@ -1,0 +1,8 @@
+package examen.services.parte2;
+
+import java.util.logging.Handler;
+
+public class FutbolXmlHandler extends Handler{
+	
+
+}

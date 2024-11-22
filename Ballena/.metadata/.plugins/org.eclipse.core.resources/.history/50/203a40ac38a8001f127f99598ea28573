@@ -1,0 +1,24 @@
+package paquete_1_5;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class TsorteoSimulator extends Thread {
+	private String nombreSorteo;
+	private Integer numBolaInicial;
+	private Integer numBolaFinal;
+	private Integer bolasExtraer;
+	
+	public TsorteoSimulator(SorteoSimulator sorteo) {
+		this.sorteo = new SorteoSimulator(nombreSorteo, 1 , 90 , 5);
+	}
+
+	@Override
+	public void run() {
+		sorteo.generaUnaCombinaciónGanadora(300);
+	}
+
+
+
+}

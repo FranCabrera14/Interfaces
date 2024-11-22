@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.beans.Statement"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.security.Provider.Service"/>
+    <fullyQualifiedTypeName name="examen.services.DbService"/>
+    <fullyQualifiedTypeName name="org.mariadb.jdbc.Connection"/>
+    <fullyQualifiedTypeName name="examen.modelo.Futbolista"/>
+    <fullyQualifiedTypeName name="java.lang.Throwable"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="examen.dao.FutbolistasDao"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="examen.dao.PaisesDao"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.dataformat.xml.XmlMapper"/>
+    <fullyQualifiedTypeName name="examen.services.parte2.FutbolXmlServiceImpl"/>
+    <fullyQualifiedTypeName name="examen.services.parte1.FutbolDbServiceImpl"/>
+    <fullyQualifiedTypeName name="examen.services.FutbolXmlException"/>
+    <fullyQualifiedTypeName name="examen.services.EquipoNotFoundException"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="examen.services.FutbolDbException"/>
+    <fullyQualifiedTypeName name="examen.dao.EquiposDao"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
+    <fullyQualifiedTypeName name="java.util.logging.Handler"/>
+    <fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilderFactory"/>
+    <fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilder"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+    <fullyQualifiedTypeName name="examen.modelo.Equipo"/>
+    <fullyQualifiedTypeName name="javax.lang.model.element.Element"/>
+    <fullyQualifiedTypeName name="org.w3c.dom.NodeList"/>
+    <fullyQualifiedTypeName name="examen.modelo.Pais"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>

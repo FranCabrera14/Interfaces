@@ -1,0 +1,24 @@
+package examen.services.parte2;
+
+import java.util.List;
+
+import examen.modelo.Equipo;
+import examen.services.EquipoNotFoundException;
+import examen.services.FutbolDbException;
+import examen.services.FutbolXmlException;
+
+public class FutbolXmlServiceImpl implements FutbolXmlService  {
+
+	// TODO: En esta clase es donde tienes que implementar tu código
+	// TODO: Mira los comentarios escritos en la interfaz FutbolXmlService
+	
+	@Override
+	public List<Equipo> importarEquipos(String pathFile) throws FutbolXmlException, FutbolDbException {
+		return null;
+	}
+
+	@Override
+	public void exportarEquipo(String pathFile, Long idEquipo) throws FutbolXmlException, FutbolDbException, EquipoNotFoundException {
+	}
+
+}

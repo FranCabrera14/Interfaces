@@ -1,0 +1,7 @@
+package paquete_1_5;
+
+public class RSorteoSimulator implements Runnable {
+	
+	private
+
+}

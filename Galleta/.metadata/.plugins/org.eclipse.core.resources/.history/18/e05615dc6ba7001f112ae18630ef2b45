@@ -1,0 +1,84 @@
+package examen.gui.controller;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
+import examen.gui.screens.AltaScreen;
+import examen.gui.screens.LoginScreen;
+import examen.services.AutenticacionException;
+import examen.services.ExamenService;
+
+public class MainController extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private LoginScreen loginScreen;
+	private AltaScreen altaScreen;
+	private ExamenService service;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainController frame = new MainController();
+					frame.setVisible(true);
+		      
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainController() {
+		loginScreen = new LoginScreen(this);
+		altaScreen = new AltaScreen(this);
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		this.setBounds(200, 200, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setContentPane(loginScreen);
+	
+	}
+	
+	public void checkLogin(String codigo) {
+		
+		service = new ExamenService();
+		try {
+			service.login(codigo);
+			
+			return codigo;
+		} catch (AutenticacionException e) {
+			
+			return e.getMessage();
+		}
+	}
+	
+	public void goToAltaScreen() {
+		setContentPane(altaScreen);
+		revalidate();
+		
+	}
+	
+	public void goToLoginScreen() {
+		setContentPane(loginScreen);
+		revalidate();
+		
+	}
+
+}

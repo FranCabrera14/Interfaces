@@ -1,0 +1,27 @@
+package examen.modelo;
+
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+@Data
+public class Futbolista {
+	
+	// NO PUEDES AÑADIR MÁS ATRIBUTOS. 
+	@JsonIgnore
+	private Long id;
+	
+	private Integer dorsal;
+	private String nombre;
+	private LocalDate fechaNacimiento;
+	private String posicion;
+	
+	
+	@Override
+	public String toString() {
+		return id + "-" + nombre + " // Dorsal y posición: " + dorsal + " " + posicion + " (" + fechaNacimiento +")";
+	}
+	
+
+}
