@@ -1,0 +1,349 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /api/pedido/id/{id}:
+    put:
+      operationId: addDetalle
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PedidoDetalle'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pedido'
+          description: OK
+      tags:
+      - pedido-api-service
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/clients:
+    post:
+      operationId: createClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: OK
+      tags:
+      - client-api-service
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: actualizeClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: OK
+      tags:
+      - client-api-service
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/pedido:
+    post:
+      operationId: registrarPedido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      tags:
+      - pedido-api-service
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/pedido/{id}:
+    get:
+      operationId: consultarPedido
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pedido'
+          description: OK
+      tags:
+      - pedido-api-service
+      x-accepts:
+      - '*/*'
+  /api/pedido/fecha:
+    get:
+      operationId: buscarPedidoFecha
+      parameters:
+      - explode: true
+        in: query
+        name: antes
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: despues
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/Pedido'
+                type: array
+          description: OK
+      tags:
+      - pedido-api-service
+      x-accepts:
+      - '*/*'
+  /api/pedido/dni/{dni}:
+    get:
+      operationId: buscarPedidoDni
+      parameters:
+      - explode: false
+        in: path
+        name: dni
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/Pedido'
+                type: array
+          description: OK
+      tags:
+      - pedido-api-service
+      x-accepts:
+      - '*/*'
+  /api/clients/{id}:
+    get:
+      operationId: checkClientId
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: OK
+      tags:
+      - client-api-service
+      x-accepts:
+      - '*/*'
+  /api/clients/dni{dni}:
+    get:
+      operationId: checkClientDni
+      parameters:
+      - explode: false
+        in: path
+        name: dni
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: OK
+      tags:
+      - client-api-service
+      x-accepts:
+      - '*/*'
+components:
+  schemas:
+    Articulo:
+      example:
+        descripcion: descripcion
+        codigo: codigo
+        precio: 6.027456183070403
+      properties:
+        codigo:
+          type: string
+        descripcion:
+          type: string
+        precio:
+          type: number
+    PedidoDetalle:
+      example:
+        articulo:
+          descripcion: descripcion
+          codigo: codigo
+          precio: 6.027456183070403
+        cantidad: 1
+      properties:
+        articulo:
+          $ref: '#/components/schemas/Articulo'
+        cantidad:
+          format: int32
+          minimum: 1
+          type: integer
+      required:
+      - articulo
+      - cantidad
+    Cliente:
+      example:
+        direccion: direccion
+        id: id
+        nombre: nombre
+        dni: dni
+      properties:
+        id:
+          type: string
+        dni:
+          type: string
+        nombre:
+          type: string
+        direccion:
+          type: string
+      required:
+      - direccion
+      - dni
+      - nombre
+    Pedido:
+      example:
+        cliente:
+          direccion: direccion
+          id: id
+          nombre: nombre
+          dni: dni
+        fecha: 2000-01-23
+        numero: 0
+        detalles:
+        - articulo:
+            descripcion: descripcion
+            codigo: codigo
+            precio: 6.027456183070403
+          cantidad: 1
+        - articulo:
+            descripcion: descripcion
+            codigo: codigo
+            precio: 6.027456183070403
+          cantidad: 1
+        - articulo:
+            descripcion: descripcion
+            codigo: codigo
+            precio: 6.027456183070403
+          cantidad: 1
+        - articulo:
+            descripcion: descripcion
+            codigo: codigo
+            precio: 6.027456183070403
+          cantidad: 1
+        - articulo:
+            descripcion: descripcion
+            codigo: codigo
+            precio: 6.027456183070403
+          cantidad: 1
+        id: id
+      properties:
+        id:
+          type: string
+        cliente:
+          $ref: '#/components/schemas/Cliente'
+        fecha:
+          format: date
+          type: string
+        numero:
+          format: int32
+          type: integer
+        detalles:
+          items:
+            $ref: '#/components/schemas/PedidoDetalle'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - cliente
+      - detalles
+      - fecha
+      - numero
+    CreateClientRequest:
+      example:
+        direccion: direccion
+        nombre: nombre
+        dni: dni
+      properties:
+        dni:
+          maxLength: 2147483647
+          minLength: 9
+          type: string
+        nombre:
+          type: string
+        direccion:
+          type: string
+      required:
+      - direccion
+      - dni
+      - nombre
+
