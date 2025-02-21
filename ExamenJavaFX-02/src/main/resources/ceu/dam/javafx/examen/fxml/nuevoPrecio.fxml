@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.examen.gui.controller.NuevoPrecioController">
+   <children>
+      <Label layoutX="171.0" layoutY="214.0" prefHeight="19.0" prefWidth="262.0" text="No tiene permisos para modificar los datos" textFill="#e10303">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="223.0" layoutY="145.0" prefHeight="27.0" prefWidth="154.0" text="NUEVO PRECIO" textFill="#1b8634">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="104.0" layoutY="66.0" text="Catálogo:" />
+      <Label fx:id="lblCatalogo" layoutX="171.0" layoutY="66.0" prefHeight="17.0" prefWidth="310.0" textFill="#2d03e8" />
+   </children>
+</AnchorPane>
